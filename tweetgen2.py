@@ -18,6 +18,7 @@ class MarkovChain:
             Build markov model
         """
         self.lines += lines
+        print("Building trie...")
         for title in lines:
             tokens = title.split()
             if len(tokens) > self.lookback:
@@ -31,6 +32,7 @@ class MarkovChain:
         """
             Calculate probabilities
         """
+        print("Building probabilities...")
         for word, following in self.trie.items():
             total = float(sum(following.values()))
             for key in following:
@@ -65,7 +67,7 @@ class MarkovChain:
 
 
 def main():
-    tweetfile = "data/tweets/clean.csv"
+    tweetfile = "data/tweets/clean/clean.csv"
     df = load_df(tweetfile)
     # text = "\n".join(df['text'].values.tolist()).strip()
     mc = MarkovChain(lookback=2)

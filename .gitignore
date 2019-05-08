@@ -1,7 +1,7 @@
 # ignorance is piss
-data/
+data/tweets/original/*
+data/tweets/clean/*
 *.swp
-*.txt
 *.pkl
 
 # Byte-compiled / optimized / DLL files

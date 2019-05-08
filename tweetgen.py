@@ -72,7 +72,7 @@ def generate2(trie, initial_word, max_len=5, verbose=False):
     return res
 
 def main():
-    tweetfile = "data/tweets/clean.csv"
+    tweetfile = "data/tweets/clean/clean.csv"
     df = load_df(tweetfile)
     text = "\n".join(df['text'].values.tolist()).strip()
     pairs = create_pairs(text)

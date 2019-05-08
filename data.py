@@ -30,7 +30,7 @@ def clean(emoticons, src="data/tweets/original", dest="data/tweets/clean/"):
             - remove emoticons
     """
     print("Cleaing tweets...")
-    src = os.path.join(src, '*')
+    src = os.path.join(src, '*.js')
     files = sorted(glob.glob(src))
     for filename in files:
         print("Loading from {}".format(filename))
@@ -49,16 +49,16 @@ def clean(emoticons, src="data/tweets/original", dest="data/tweets/clean/"):
         with open(dumpname, 'w') as f:
             json.dump(data, f)
 
-def dump_as_csv(src="data/tweets/clean", dest="data/tweets/clean.csv"):
+def dump_as_csv(src="data/tweets/clean", dest="clean.csv"):
     print("Dumping to {}".format(dest))
     data = []
-    src = os.path.join(src, '*')
-    files = sorted(glob.glob(src))
+    files = sorted(glob.glob(os.path.join(src, '*.json')))
     for filename in files:
         with open(filename) as f:
             d = json.load(f)
             data += d
     df = pd.DataFrame(data)
+    dest = os.path.join(src, dest)
     df.to_csv(dest, index=False)
 
 def load_df(filename):
@@ -70,12 +70,18 @@ def load_df(filename):
     return df
 
 def main():
-    text = "Hello :D I am paradox :)"
     src = "data/tweets/original"
     dest = "data/tweets/clean"
+
+    # src = "data/tweets/samples"
+    # dest = "data/tweets/clean"
+
+    csvfile = "clean.csv"
+
     emoticons = load_emoticons("data/emoticons.txt")
+
     clean(emoticons, src, dest)
-    dump_as_csv(dest, "data/tweets/clean.csv")
+    dump_as_csv(dest, csvfile)
 
 if __name__ == "__main__":
     main()
