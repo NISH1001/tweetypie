@@ -23,7 +23,7 @@ def clean_text(text):
     text = re.sub(r'http\S+', ' ', text)
     # text = re.sub(r'#+', ' ', text )
     text = re.sub(r'#[A-Za-z0-9]+', ' ', text)
-    text = re.sub(r'@[A-Za-z0-9]+', ' ', text)
+    text = re.sub(r'@[A-Za-z0-9_]+', ' ', text)
     text = re.sub(r"([A-Za-z]+)'s", r"\1 is", text)
     text = re.sub(r"\'ve", " have ", text)
     text = re.sub(r"won't", "will not ", text)
