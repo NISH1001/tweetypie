@@ -36,8 +36,8 @@ Once preprocessing is done, there will be `clean.csv` file generated inside `cle
 
 ## Special Tokens
 There are two tokens:
-- **<EMOTICON>**: A generate token for all textual emoticons/smileys
-- **<SENTENCE>**: Start/End of sentence
+- **&lt;EMOTICON&gt;** : A general token for all textual emoticons/smileys
+- **&lt;SENTENCE&gt;** : Start/End of sentence
 
 ## Tweet Generation
 Tweets are generated using simple markov chain. The details can also be found in [this](tweet-generator-markov.ipynb) notebook.  
@@ -47,14 +47,18 @@ Tweets are generated using simple markov chain. The details can also be found in
 
 ## Markov Sample Tweets
 Some tweets generated using `tweetgen2.py` are:
+```bash
 - i do not really need such specs for a $ <SENTENCE> i have it in just one shot do not even bat an eye on this matter <SENTENCE>
 - haha <SENTENCE> yo week sablai tattoo hanna mann lagyra raicha <SENTENCE> <EMOTICON>
 - folks here falling in love with the consequences of availability of data re <SENTENCE> ekdumai thulo <SENTENCE> huge and enormous amount of data re <SENTENCE> kandai vayecha <EMOTICON>
+```
 
 Some tweetgs generated using `tweetgen.py` are:
+```bash
 - i have never know yourself some deeds <SENTENCE> kill him <SENTENCE> dyang <SENTENCE> simulation and
 - i succeed i am pretty refreshing <SENTENCE> haha <SENTENCE> = ! <SENTENCE> the mind like
 - i had composed years <SENTENCE> <EMOTICON> how earth a smoother time perception while solitude said
+```
 
 
 ## Note
