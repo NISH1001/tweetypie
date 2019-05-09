@@ -2,6 +2,10 @@
 
 import random
 
+from preprocess import (
+    preprocess_sentence
+)
+
 from data import (
     load_df
 )
@@ -79,7 +83,9 @@ def main():
     trie = build_trie(pairs)
     generated_words = generate1(trie, initial_word='i', max_len=15, verbose=False)
     generated_text = ' '.join(generated_words)
-    print(generated_text)
+    print("Generated tweet::\n{}".format(generated_text))
+    print('-'*30)
+    print("After preprocessing <SENTENCE>::\n{}".format(preprocess_sentence(generated_text)))
 
 
 if __name__ == "__main__":
