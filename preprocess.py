@@ -4,6 +4,10 @@ import re
 import itertools
 import nltk
 
+def preprocess_sentence(text):
+    sentences = re.split(r'\s*<SENTENCE>\s*', text)
+    return '.\n'.join([sentence.capitalize() for sentence in sentences ]).strip()
+
 def remove_emoticons(text, emoticons):
     for emoticon in emoticons:
         if emoticon in text:

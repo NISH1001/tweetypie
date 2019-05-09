@@ -3,6 +3,10 @@
 from collections import defaultdict
 import random
 
+from preprocess import (
+    preprocess_sentence
+)
+
 from data import (
     load_df
 )
@@ -49,10 +53,7 @@ class MarkovChain:
 
     def generate(self, initial_words=[]):
         sentence = initial_words[:-1]
-        if not initial_words:
-            next_word = self._sample(self.trie[''].items())
-        else:
-            next_word = initial_words[-1]
+        next_word = self._sample(self.trie[''].items()) if not initial_words else initial_words[-1]
         while next_word != '':
             sentence.append(next_word)
             next_word = self._sample(self.trie[' '.join(sentence[-self.lookback:])].items())
@@ -77,9 +78,11 @@ def main():
     mc.train(load_df(tweetfile)['text'].values.tolist())
 
     # initial_words = ['we', 'tend', 'to']
-    initial_words = ['i', 'think']
+    initial_words = ['life', 'is']
     tweet = mc.generate(initial_words)
-    print(tweet)
+    print("Generated tweet::\n{}".format(tweet))
+    print('-'*30)
+    print("After preprocessing <SENTENCE>::\n{}".format(preprocess_sentence(tweet)))
 
 if __name__ == "__main__":
     main()
