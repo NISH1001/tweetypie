@@ -2,6 +2,7 @@
 
 from collections import defaultdict
 import random
+import sys
 
 from preprocess import (
     preprocess_sentence
@@ -74,11 +75,21 @@ class MarkovChain:
 def main():
     tweetfile = "data/tweets/clean/clean.csv"
     # df = load_df(tweetfile)
-    mc = MarkovChain(lookback=2)
+
+    # some shitty CLI
+    args = sys.argv[1:]
+    if len(args) < 2:
+        print("LOL. Please input in the format <loopback value> <word1> <word2> ...")
+        print("Example: tweetgen2.py 2 my life")
+        return
+    n = int(args[0])
+    initial_words = args[1:]
+
+    mc = MarkovChain(lookback=n)
     mc.train(load_df(tweetfile)['text'].values.tolist())
 
     # initial_words = ['we', 'tend', 'to']
-    initial_words = ['life', 'is']
+    # initial_words = ['life', 'is']
     tweet = mc.generate(initial_words)
     print("Generated tweet::\n{}".format(tweet))
     print('-'*30)
