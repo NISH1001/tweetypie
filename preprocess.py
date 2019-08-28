@@ -16,7 +16,7 @@ def remove_emoticons(text, emoticons):
     return text
 
 def add_sentence_boundary(text):
-    text = re.sub(r'\.{2,}', '. ', text)
+    text = re.sub(r'[!?;.]{2,}', '. ', text)
     tokenizer = nltk.tokenize.PunktSentenceTokenizer()
     sentences = tokenizer.tokenize(text)
     return ' <SENTENCE> '.join(sentences)
@@ -38,12 +38,30 @@ def clean_text(text):
     text = re.sub(r"\'re", " are ", text)
     text = re.sub(r"\'d", " would ", text)
     text = re.sub(r"\'ll", " will ", text)
-    text = re.sub('["\[\]_,./+-]+', ' ', text)
+    text = re.sub('["\[\]_()?;:,./+-]+', ' ', text)
     text = re.sub(r'\d+', ' ', text)
     text = re.sub('\s+', ' ', text)
     text = text.replace("<sentence>", "<SENTENCE>")
     text = text.strip()
     return text
+
+def remove_stopwords(text, stopwords):
+    tokens = text.split()
+    res = []
+    for token in tokens:
+        if token not in stopwords:
+            res.append(token)
+    return ' '.join(res)
+
+def clean_all(text, emoticons, stopwords, remove_stop=True):
+    text = add_sentence_boundary(text)
+    text = clean_text(text)
+    text = remove_emoticons(text, emoticons)
+    if remove_stop:
+        text = remove_stopwords(text, stopwords)
+    return  text
+
+
 
 
 def main():
