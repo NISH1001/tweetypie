@@ -45,6 +45,20 @@ Tweets are generated using simple markov chain. The details can also be found in
 `tweetgen.py` is used for simple chain that only sees one past word and predicts one new word.  
 `tweetgen2.py` is used for introducing the concept of **lookback** that can see **n** past words and generate a new word accordingly.
 
+## Usage
+```python
+python tweetgen2 <loopback> <word1> <word2> ...
+```
+Here,
+**loopback** : value to see *n* past words  
+<word1> <word2> : seed words for text generation  
+
+Example:  
+```python
+python tweetgen2.py 2 my life
+``
+
+
 ## Markov Sample Tweets
 Some tweets generated using `tweetgen2.py` are:
 ```bash
